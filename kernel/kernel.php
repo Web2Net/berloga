@@ -1,6 +1,7 @@
 <?php
 	
 include_once ("cfg.php");
+include_once ("error.class.php");
 include ("sys.util.php");
 include ("ini.util.php");		
 include ("time.util.php");
@@ -34,5 +35,5 @@ class AdmTpl extends Tpl
 }
 
 SYS::varDump($GLOBALS,__FILE__,__LINE__,"GLOBALS");
-
+//new errorHandler();
 ?>

@@ -62,14 +62,13 @@ if(isset($mod) && $mod=='banner'){
     }
 
 //*********** Языки и еже с ними *********//
-define(LANG_DEFAULT, Lang::getDefaultSiteLang()); //язык сайта по умолчанию;
 Lang::setLang(); 
 //*********** /Языки и еже с ними *********//
 
 
     $tpl = new AdmTpl;
 
-        $tpl->assign('main_menu', $main_menu);
+    $tpl->assign('main_menu', $main_menu);
 if(isset($c_cont)){
         $tpl->assign('c_cont', $c_cont);
 }        

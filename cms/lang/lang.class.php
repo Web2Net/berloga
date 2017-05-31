@@ -1,6 +1,6 @@
 <?php
 
-define(LANG_DEFAULT, Lang::getDefaultSiteLang()); //язык сайта по умолчанию;
+define('LANG_DEFAULT', Lang::getDefaultSiteLang()); //язык сайта по умолчанию;
 
 class Lang 
 {
