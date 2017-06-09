@@ -1,4 +1,5 @@
 <?
+$val['ddp']="0";
                 $price_roznica = Price::getPrice($val['postavschik'],$val['price_roznica'],$val['price_diler'],$val['ddp']);
                 $dp=explode(".",$price_roznica);
 ?>
@@ -6,7 +7,9 @@
 					    <tr>
 						    <td style="height:70px;margin-bottom:12px;" valign="bottom" align="center">
                                 <div style="margin-bottom:12px;"><?=NOTE_PRICE?>: 
-<?                  if($price_roznica!=0){?>
+<?                  if($price_roznica!=0){
+                        if($dp[1]==""){$dp[1]=="";}
+?>
                                     <span style="color: #684302;"><?=$dp[0]?>.<font><?=$dp[1]?></font></span> <?=CURRENCY?>
 <?                  }else{?>
                                     <span style="font-size:17px;line-height:25px;padding:7px;"><?=NOTE_NO_PRICE?></span> 

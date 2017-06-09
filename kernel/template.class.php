@@ -37,10 +37,13 @@ class Tpl
             }
         }
         if($_SESSION!=NULL){
-	        foreach ($_SESSION as $key=>$val){
-                $str="$".$key."=\"".$val."\";";
-                eval($str);
-            }
+$lang = $_SESSION['lang'];
+$display = $_SESSION['display'];
+// 	        foreach ($_SESSION as $key=>$val){
+//echo $key." = ".$val."<br />";
+//                 $str="$".$key."=\"".$val."\";";
+//                 eval($str);
+//            }
         }  
 	    foreach($this->ct_data as $name=>$data){ 
             $str="$".$name." = \$data ;";

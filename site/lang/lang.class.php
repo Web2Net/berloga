@@ -13,6 +13,7 @@ define('LANG_DEFAULT', Lang::getDefaultSiteLang()); //язык сайта по �
 //if(Setting::setSetting("multi_lang")) // Если на сайте разрешена мультиязычность
 //{
      $site_langs = Lang::getSiteLangs();  // Получаем доступные языки   
+     
      if($site_langs !== NULL)
      {   
          foreach($site_langs as $key=>$val)
@@ -34,28 +35,46 @@ define('LANG_DEFAULT', Lang::getDefaultSiteLang()); //язык сайта по �
 //*********** /Языки и еже с ними *********//
 class Lang 
 {
-    static function getDefaultSiteLang()
-    {
-        $db = new mysql;
-        
-        $from="`cfg_lang`";
-        $where="`enable`='1' AND `default` = '1'";
-        $row = $db->origSelectSQL("", $from, $where, "", "");
-        
-        $lang_default = $row['0']['lang'];
-        return $lang_default;
-    }
+     static function getDefaultSiteLang()
+     {
+         $db = new mysql;
+         
+         $from="`cfg_lang`";
+         $where="`enable`='1' AND `default` = '1'";
+         $row = $db->origSelectSQL("", $from, $where, "", "");
+         
+         $lang_default = $row['0']['lang'];
+         return $lang_default;
+     }
     
-    static function getSiteLangs()
-    {
-        $db = new mysql;
-        
-        $from="`cfg_lang`";
-        $where="`enable`='1'";
-        $site_langs = $db->origSelectSQL("", $from, $where, "", "");
-        
-        return $site_langs;
-    }
+//     static function getDefaultSiteLang(){
+//         $db = new DB;
+//         
+//         $row = DB::run("SELECT * FROM `cfg_lang` WHERE `enable`='1' AND `default` = '1'")->fetch();
+//  
+//         $lang_default = $row['lang'];
+//         return $lang_default;
+//     }
+    
+     static function getSiteLangs()
+     {
+         $db = new mysql;
+         
+         $from="`cfg_lang`";
+         $where="`enable`='1'";
+         $site_langs = $db->origSelectSQL("", $from, $where, "", "");
+         
+         return $site_langs;
+     }
+    
+//     static function getSiteLangs()
+//     {
+//         $db = new DB;
+//         
+//         $site_langs = DB::run("SELECT * FROM `cfg_lang` WHERE `enable`='1'")->fetchAll(PDO::FETCH_KEY_PAIR);
+//         
+//         return $site_langs;
+//     }
     
     static function getAllSiteLangs()
     {

@@ -8,6 +8,7 @@ include ("time.util.php");
 include ("text.util.php");
 include ("gd.util.php");
 include_once ("mysql.class.php");
+//include_once ("db.class.php");
 include ("template.class.php");
 include ("email.class.php");
 

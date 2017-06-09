@@ -4,9 +4,12 @@ define('CART_TAG_TABLE','cart_tag');
 define('CART_ITEM_IMG_PATH', "/image/cart/item");
 define('CART_TAG_IMG_PATH', "/image/cart/tag");
 
-define('SHOP_ITEM_TABLE','shop_item');
-define('SHOP_ITEM_TABLE_LANG','shop_item_'.$_SESSION['lang']);
-
+if(SHOP_ITEM_TABLE === NULL){
+    define('SHOP_ITEM_TABLE','shop_item');
+}
+if(SHOP_ITEM_TABLE_LANG === NULL){
+    define('SHOP_ITEM_TABLE_LANG','shop_item_'.$_SESSION['lang']);
+}
 
 define('CART_NAME', NOTE_CART);
 

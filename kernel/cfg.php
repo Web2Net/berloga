@@ -32,7 +32,9 @@
     define('DB_HOST', 'localhost'); 
     define('DB_NAME', 'berloga_new');
     define('DB_USER', 'root');   
-    define('DB_PASS', '');  
+    define('DB_PASS', '');
+    define('DB_CHAR', 'utf8');
+    
   
     
     define('USER_IP', getenv ("REMOTE_ADDR"));
