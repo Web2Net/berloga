@@ -161,16 +161,15 @@ foreach ($tag1_select_list as $key=>$val){
 </fieldset>
 
 <fieldset class="pole">
-<legend>&nbsp;<?=SHOP_ADMIN_NOTE_FULL_DESCRIPTION?> :&nbsp;</legend>
-<textarea name="desc_full"><?=$item_data['desc_full']?></textarea>
-<script>
-CKEDITOR.replace('desc_full',{
-'filebrowserBrowseUrl':'/cms/lib/ckeditor/kcfinder/browse.php?type=files',
-'filebrowserImageBrowseUrl':'/cms/lib/ckeditor/kcfinder/browse.php?type=images',
-'filebrowserFlashBrowseUrl':'/cms/lib/ckeditor/kcfinder/browse.php?type=flash',
-'filebrowserUploadUrl':'/cms/lib/ckeditor/kcfinder/upload.php?type=files',
-'filebrowserImageUploadUrl':'/cms/lib/ckeditor/kcfinder/upload.php?type=images',
-'filebrowserFlashUploadUrl':'/cms/lib/ckeditor/kcfinder/upload.php?type=flash'});
+<legend>&nbsp;&nbsp;<?=SHOP_ADMIN_NOTE_FULL_DESCRIPTION?> :&nbsp;&nbsp;</legend>
+<textarea name="desc_full" id="desc_full" cols="145" rows="135"><?=$tag_data["desc_full"];?></textarea>
+
+<script type="text/javascript">
+CKEDITOR.replace( 'desc_full',{
+//    toolbar : 'Basic'
+//    toolbar : 'Medium'
+    toolbar : 'Default'
+});
 </script>
 </fieldset>
 
