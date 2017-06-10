@@ -33,7 +33,7 @@
     define('DB_NAME', 'berloga_new');
     define('DB_USER', 'root');   
     define('DB_PASS', '');
-    define('DB_CHAR', 'utf8');
+    define('DB_CHAR', 'utf8'); // Для PDO
     
   
     

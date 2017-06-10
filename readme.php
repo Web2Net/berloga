@@ -14,6 +14,13 @@ Class errorHandler() - подключается в /kernel.php (line 38)
 
 *****************************************************
 
-PDO - в /kernel.php раскомитить db.class.php и закомитить mysql.class.php - далее по обстаятельствам.. Толпа ошибок вываливается..
+Новый класс safeMySql для работы с БД. Из всех пересмотренных показался наиболее удобен.
+
+Класс - https://github.com/colshrapnel/safemysql/blob/master/safemysql.class.php
+Описалово - http://phpfaq.ru/safemysql
+Шпаргалка - http://phpfaq.ru/misc/safemysql_cheatsheet_ru.pdf
+ФАК по классу - http://phpfaq.ru/safemysql/faq
+
+В /kernel.php раскомитить db.class.php и закомитить mysql.class.php - далее по обстоятельствам.. Толпа ошибок вываливается..
 
 *****************************************************
