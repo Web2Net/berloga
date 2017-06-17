@@ -72,7 +72,8 @@
     define('PATH_DESIGN_MOBI',       '/site/design/mobi');
     define('PATH_IMG_MOBI',          PATH_DESIGN_MOBI.'/img');
     
-
-
+// Пути к модулям
+    define('PATH_SHOP_MOD_SITE',     SITE_PATH.'/site/shop');
+    define('PATH_SHOP_MOD_SITE_TPL', PATH_SHOP_MOD_SITE.'/tpl');
         
 ?>

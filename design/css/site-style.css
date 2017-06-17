@@ -378,6 +378,16 @@ footer .menu_main{
 /******************* /IMG  ********************/
 
 /* ---------------------- CATALOG -------------------------*/    
+/* ************************************ */
+.view_grid{
+    width:200px;   
+}
+.view_list{
+    width:99%%;
+    text-align:left;
+    padding-left:10px;
+}
+/* ********************************** */
 .wrap_catalog{
     padding:0px; margin:0 auto;
     width:1020px; min-height:100px;
