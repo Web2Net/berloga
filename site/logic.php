@@ -40,13 +40,30 @@ $_SESSION["display"]="mobi";
 if(isset($_GET["display"]) && $_GET["display"]=="full"){
 $_SESSION["display"]="full";
 }
-/*
-foreach ($_REQUEST as $key=>$val)
+// ************* GRID_LIST **********************
+
+$seolink=$_SERVER['REQUEST_URI'];
+if(isset($seolink))
 {
-    $str="$".$key."=\$val;";
-    eval($str);
+    $seodata = explode("/",$seolink);
+    $grid_list = $GLOBALS["view"] = $seodata[1];
 }
-*/
+             if(!$_SESSION['grid_list']){ // Если вид еще не переключался, устанавливаем вид по умолчанию
+                 $_SESSION['grid_list'] = "grid";  // Загоняем дефаултный вид в сессию 
+             }
+             else{
+                 if($grid_list == "list"){  // Если юзер переключает вид
+                     $_SESSION['grid_list'] = "list";  // Загоняем нужный вид в сессию
+                     header("Location: ".$_SERVER['HTTP_REFERER']."");
+                 } 
+                 elseif($grid_list == "grid"){
+                     $_SESSION['grid_list'] = "grid";
+                     header("Location: ".$_SERVER['HTTP_REFERER']."");
+                 }
+                 
+             }
+
+// ************ /GRID_LIST ******************
 $seolink=$_SERVER['REQUEST_URI'];
 
 if(isset($seolink))
