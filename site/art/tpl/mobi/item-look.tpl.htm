@@ -67,7 +67,7 @@ if(!file_exists(getenv("DOCUMENT_ROOT").$img4))$img4="";
 <?if($item_data["connect"]==";6;"){?>
 <div style="text-align:right;padding-right:10px;"><?=ART_AUTHOR?> : <?=$item_data["p1"]?></div>
 <?}?>
-
+<div style="text-align:justify;padding:10px;"><?=$item_data["meta_d"]?></div>
 <?$item_data["desc_full"] = strip_tags($item_data["desc_full"],"<div>,<p>,<a>,<img>,<iframe>");?>
 
 <div class="desc_special">

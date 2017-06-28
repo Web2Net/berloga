@@ -115,7 +115,11 @@ INI::Delete('metka');
     else if(isset($display) && $display=="companion")
     {
         $tpl->display('tab2');
-    }     
+    } 
+    else if(isset($display) && $display=="print")
+    {
+        $tpl->display('print');
+    }
     else if(isset($display) && $display=="ajax")
     {
         $tpl->display('ajax');

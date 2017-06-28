@@ -1,4 +1,7 @@
-
+<?
+$_SESSION['grid_list'] = "list";
+//$_SESSION['grid_list'] = "grid";
+?>
 
 <?
 $t1=explode(";",substr($tag2_data['connect'],1,-1));
@@ -9,17 +12,6 @@ $t1c=$tag1_sdata['caption'];
 <div class="polosa"><a href="/shop" title="Магазин"><img src="/design/icon/Shop_32x32.png" width="32" border="0" style="margin-bottom:-4px;" /></a> » <a href="../<?=$GLOBALS["tag1"]?>"><?=$t1c?></a> » <?=$tag2_data['caption']?></div>
 
 <div class="wrap_catalog">
-<?
-//$_SESSION['grid_list'] = "list";
-//$_SESSION['grid_list'] = "grid";
-?>
-<?if($_SESSION['user_level'] == "9"){?>
-<div style="float:right;padding-right:5px;">
-    <a href="/grid/" style=""><img src="/design/img/grid.png" style="width:30px" title="Сетка" alt="Сетка"></a>
-    <a href="/list/" style=""><img src="/design/img/list.png" style="width:30px" title="Список" alt="Список"></a>
-</div>
-<?}?>
-<div class="both"></div>
 <?if($item_list!=NULL){
 	foreach($item_list as $key=>$val){
         

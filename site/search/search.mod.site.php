@@ -164,6 +164,25 @@ define('SEARCH_ART_TABLE_LANG','art_item_'.$_SESSION['lang']);
         return $page; 
     }
     
+    static function getTag($level,$connect){
+        if($level == 2){
+            $connectus = explode(";",$connect);
+            $connecta = $connectus[1];
+            $seolinkus = "id";
+        }
+        else{
+            $connecta = $connect;
+            $seolinkus = "connect";
+        }
+        $query = "SELECT * FROM `shop_tag` WHERE `level`='".$level."' AND `".$seolinkus."` LIKE '%".$connecta."%' ";
+        
+        $res = mysql_query($query);
+	mysql::queryError($res,$query);
+        $row = mysql_fetch_assoc($res);
+//SYS::varDump($row,__FILE__,__LINE__,'search_row_tag');        
+        return $row;
+    }
+    
     static function addToBD($val)
     {   
         $db = new mysql;
