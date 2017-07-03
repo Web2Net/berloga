@@ -31,15 +31,85 @@ class Text
         return $text;
     }
   
+    static function createMetaTitle($meta_t, $caption){  // Создание meta_title
+        if(isset($meta_t) && $meta_t !== ""){ 
+            $meta_t = $meta_t;
+        }
+        else{
+            if(isset($caption) && $caption != ''){
+                $meta_t = Text::cut($caption);
+            }
+            else{
+                $meta_t = SITE_NAME;
+            }
+        }
+        
+        return $meta_t;
+    }
+  
+    static function createMetaDescription($meta_d, $desc_short, $desc_full, $caption){ // Создание meta_description
+        if(isset($meta_d) && $meta_d != ''){ 
+            $meta_d = $meta_d;
+        }
+        else{
+            if(isset($desc_short) && $desc_short != ''){
+                $meta_d = Text::cut($desc_short);
+            }
+            elseif(isset($desc_full) && $desc_full != ''){
+                $meta_d = Text::cut($desc_full);
+            }
+            else{
+                if(isset($caption) && $caption != ''){
+                    $meta_d = Text::cut($caption);
+                }
+                else{
+                    $meta_d = SITE_NAME;
+                    }
+                }
+            }
+            $meta_d = str_replace("\n", ' ', $meta_d);
+            $meta_d = str_replace("\r", ' ', $meta_d);
+            //$meta_d = preg_replace("/\s+/", " ",  $meta_d);
+            
+            return $meta_d;
+    }
+    
+    static function createMetaKey($string){
+        if($string !== ""){
+            $arr = explode(" ",$string);
+            foreach($arr as $k=>$v){
+                if(strlen($v) >= 3){
+                    $meta_k .= Text::cut($v).", ";
+                }
+            }    
+        }
+	else{
+	    $meta_k = META_K_DEFAULT;
+	} 
+	
+	return Text::deleteDuplicatesWords($meta_k);
+    }
+    
+    function deleteDuplicatesWords($string){ // Удаляем повторяющиеся слова из строки
+        $string = implode(array_reverse(preg_split('//u', $string)));
+        $string = preg_replace('/(\b[\pL0-9]++\b)(?=.*?\1)/siu', '', $string);
+        $string = implode(array_reverse(preg_split('//u', $string)));
+        
+        return $string;
+    }
+  
     static function cut($string)
     {
         $string = trim($string);
-        $string = strip_tags($string);
-        $string = htmlspecialchars($string);
-        $string = mysql_escape_string($string);
-        $string = ereg_replace("\""," ",$string);
+		//$string = ereg_replace("\""," ",$string);
+        $string = ereg_replace('"'," ",$string);
         $string = ereg_replace("'"," ",$string);
         $string = ereg_replace("`"," ",$string);
+        
+        $string = strip_tags($string);
+        $string = htmlspecialchars($string);
+        //$string = mysql_escape_string($string);
+        
         return $string;
     }
 
@@ -49,6 +119,44 @@ class Text
         $string = ereg_replace("\""," ",$string);
         $string = ereg_replace("'"," ",$string);
         $string = ereg_replace("`"," ",$string);
+        $string = htmlspecialchars($string);
+        return $string;
+    }
+    
+    function cutForKeywords($string)
+    {
+        $string = trim($string);
+        $string = ereg_replace("\""," ",$string);
+        $string = ereg_replace("'"," ",$string);
+        $string = ereg_replace("`"," ",$string);
+        $string = ereg_replace(",,",",",$string);
+        $string = ereg_replace(",,,",",",$string);
+        $string = ereg_replace("&quot;","",$string);
+        $string = ereg_replace("%","",$string);
+        $string = ereg_replace(":","",$string); 
+        
+        $string = str_replace("(","",$string);
+        $string = str_replace(")","",$string);
+        //$string = str_replace(".","",$string);
+        $string = str_replace("\\","",$string);
+        $string = str_replace("","",$string);
+        $string = str_replace("-","",$string);
+        $string = str_replace("-","",$string);
+        
+        
+        $string = addslashes($string);
+        
+        $string = htmlspecialchars($string);
+        return $string;        
+    }
+    
+    static function cutStringToSeolink($string)
+    {
+        $string = trim($string);
+        $string = ereg_replace("\"","_",$string);
+        $string = ereg_replace("'","_",$string);
+        $string = ereg_replace("`","_",$string);
+        $string = ereg_replace("/","_",$string);
         $string = htmlspecialchars($string);
         return $string;
     }
@@ -198,6 +306,92 @@ class Text
     "”" => "",
     "’" => "",                            
     "'" => ''
+    ); 
+    $key = array_keys($arr);
+    $val = array_values($arr);
+    $transl = str_replace($key,$val,trim($str)); 
+
+    return strtolower($transl); 
+    }
+	
+	static function cirilToLatin2($str) 
+    { 
+
+    $arr = array( 
+    'А' => 'A', 
+    'Б' => 'B', 
+    'В' => 'V', 
+    'Г' => 'G', 
+    'Д' => 'D', 
+    'Е' => 'E', 
+    'Ё' => 'E', 
+    'Ж' => 'ZH', 
+    'З' => 'Z', 
+    'И' => 'I', 
+    'Й' => 'Y', 
+    'К' => 'K', 
+    'Л' => 'L', 
+    'М' => 'M', 
+    'Н' => 'N', 
+    'О' => 'O', 
+    'П' => 'P', 
+    'Р' => 'R', 
+    'С' => 'S', 
+    'Т' => 'T', 
+    'У' => 'U', 
+    'Ф' => 'F', 
+    'Х' => 'KH', 
+    'Ц' => 'TS', 
+    'Ч' => 'CH', 
+    'Ш' => 'SH', 
+    'Щ' => 'SCH', 
+    'Ъ' => '', 
+    'Ы' => 'Y', 
+    'Ь' => '', 
+    'Э' => 'EH', 
+    'Ю' => 'U', 
+    'Я' => 'YA',
+    'І' => 'I',    
+    'Ї' => 'YI',
+    'Є' => 'YE',
+    'Ґ' => 'G',    
+    'а' => 'a', 
+    'б' => 'b', 
+    'в' => 'v', 
+    'г' => 'g', 
+    'д' => 'd', 
+    'е' => 'e', 
+    'ё' => 'e', 
+    'ж' => 'zh', 
+    'з' => 'z', 
+    'и' => 'i', 
+    'й' => 'y', 
+    'к' => 'k', 
+    'л' => 'l', 
+    'м' => 'm', 
+    'н' => 'n', 
+    'о' => 'o', 
+    'п' => 'p', 
+    'р' => 'r', 
+    'с' => 's', 
+    'т' => 't', 
+    'у' => 'u', 
+    'ф' => 'f', 
+    'х' => 'kh', 
+    'ц' => 'ts', 
+    'ч' => 'ch', 
+    'ш' => 'sh', 
+    'щ' => 'sch', 
+    'ъ' => '', 
+    'ы' => 'y', 
+    'ь' => '', 
+    'э' => 'eh', 
+    'ю' => 'u', 
+    'я' => 'ya',
+    'і' => 'i',    
+    'ї' => 'yi',
+    'є' => 'ye',
+    'ґ' => 'g'                    
     ); 
     $key = array_keys($arr);
     $val = array_values($arr);
@@ -542,6 +736,16 @@ function array_search($searchString, $array) {
             $string = $string;
         }
         return $string;		
+	}
+	
+	static function checkBoxProcess($var){
+	    if($var == '1'){
+		    $var = 'Y';
+	    }
+	    else{
+		    $var = 'N';
+	    }
+	    return $var;
 	}
     
 }

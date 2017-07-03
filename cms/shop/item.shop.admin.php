@@ -62,9 +62,9 @@ include (SITE_PATH."/cms/inc/eval.php");
             $arr_value2['caption']=trim(str_replace('"','',$caption));
             $arr_value2['desc_short']=trim(str_replace('\'','"',$desc_short));
             $arr_value2['desc_full']=trim(str_replace('\'','"',$desc_full));
-            $arr_value2['meta_t']=$meta_t!=''?addslashes(str_replace('"','&quot;',$meta_t)):addslashes($arr_value['caption']);
-            $arr_value2['meta_d']=$meta_d!=''?addslashes(str_replace('"','&quot;',$meta_d)):addslashes($arr_value['desc_short']);
-            $arr_value2['meta_k']=addslashes($meta_k);
+            $arr_value2['meta_t'] = Text::createMetaTitle($meta_t, $caption);  // Формируем meta_title            
+            $arr_value2['meta_d'] = Text::createMetaDescription($meta_d, $desc_short, $desc_full, $caption);  // Формируем meta_description
+            $arr_value2['meta_k'] = Text::createMetaKey($arr_value2['meta_d']);  // Формируем meta_key
 
             if(!isset($package) || $package == ""){$arr_value['package']=0;}else{$arr_value['package']=$package;}// Используется под кол-во товара на складе
 
