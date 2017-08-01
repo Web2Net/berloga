@@ -51,9 +51,9 @@ $arr_value2['desc_full']=addslashes(trim($desc_full));
 $arr_value['show']=$show;
 $arr_value['hit']=$hit;
 
-$arr_value2['meta_t']=$meta_t!=''?addslashes(str_replace('"','&quot;',$meta_t)):addslashes($caption);
-$arr_value2['meta_d']=$meta_d!=''?addslashes(str_replace('"','&quot;',$meta_d)):addslashes($desc_short);
-$arr_value2['meta_k']=addslashes($meta_k);
+$arr_value2['meta_t'] = Text::createMetaTitle($meta_t, $caption);  // Формируем meta_title            
+            $arr_value2['meta_d'] = Text::createMetaDescription($meta_d, $desc_short, $desc_full, $caption);  // Формируем meta_description
+            $arr_value2['meta_k'] = Text::createMetaKey($arr_value2['meta_d']);  // Формируем meta_key
 
 $arr_value['date']=$date!=""?$date:date("Y-m-d H:i:s");
 
